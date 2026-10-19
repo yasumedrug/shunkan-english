@@ -1,0 +1,2809 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>瞬間英作文 フラッシュカード 100選</title>
+  <!-- iOS フルスクリーン・PWA対応メタタグ -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="瞬間英作文">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#F8FAFC">
+
+  <!-- アプリアイコン & インラインManifest (自動生成) -->
+  <link id="apple-touch-icon-link" rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232563EB'/%3E%3Cstop offset='100%25' stop-color='%234F46E5'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='512' height='512' rx='112' fill='url(%23g)'/%3E%3Cpath d='M292 84L136 284h110l-26 144 156-200H266l26-144z' fill='%23FACC15'/%3E%3Ctext x='256' y='468' font-family='-apple-system,sans-serif' font-size='44' font-weight='800' fill='%23ffffff' text-anchor='middle' opacity='0.92'%3EFLASH%20100%3C/text%3E%3C/svg%3E">
+  <link id="favicon-link" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%232563EB'/%3E%3Cpath d='M292 84L136 284h110l-26 144 156-200H266l26-144z' fill='%23FACC15'/%3E%3C/svg%3E">
+  <link id="manifest-link" rel="manifest" href="">
+
+  <style>
+    :root {
+      --bg-app: #F1F5F9;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F8FAFC;
+      --text-main: #0F172A;
+      --text-sub: #475569;
+      --text-muted: #94A3B8;
+      --border: #E2E8F0;
+      --primary: #2563EB;
+      --primary-soft: #EFF6FF;
+      --primary-dark: #1D4ED8;
+      --easy: #10B981;
+      --easy-bg: #ECFDF5;
+      --easy-border: #A7F3D0;
+      --normal: #F59E0B;
+      --normal-bg: #FFFBEB;
+      --normal-border: #FDE68A;
+      --hard: #EF4444;
+      --hard-bg: #FEF2F2;
+      --hard-border: #FECACA;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-left: env(safe-area-inset-left, 0px);
+      --safe-right: env(safe-area-inset-right, 0px);
+      --radius-lg: 22px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --shadow-card: 0 10px 30px -5px rgba(15, 23, 42, 0.07), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overscroll-behavior: none;
+    }
+
+    /* アプリ全体コンテナ (1画面固定) */
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 520px;
+      height: 100dvh;
+      margin: 0 auto;
+      padding-top: max(var(--safe-top), 8px);
+      padding-bottom: max(var(--safe-bottom), 8px);
+      padding-left: max(var(--safe-left), 12px);
+      padding-right: max(var(--safe-right), 12px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ===== 上部ヘッダー ===== */
+    .top-header {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 4px 2px 6px;
+    }
+
+    .header-row-1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .app-brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #2563EB, #4F46E5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FACC15;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    }
+
+    .genre-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      max-width: 205px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      transition: transform 0.1s ease, background 0.15s;
+    }
+
+    .genre-pill-btn:active {
+      transform: scale(0.96);
+      background: var(--bg-subtle);
+    }
+
+    .genre-pill-btn span.truncate {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      height: 34px;
+      min-width: 34px;
+      padding: 0 9px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-sub);
+      font-size: 12px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      transition: transform 0.1s ease, background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .icon-btn:active {
+      transform: scale(0.94);
+    }
+
+    .icon-btn.active {
+      background: var(--primary-soft);
+      border-color: #BFDBFE;
+      color: var(--primary);
+    }
+
+    /* ステータス＆進捗バー行 */
+    .header-row-2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .counter-badge {
+      font-weight: 800;
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.01em;
+    }
+
+    .status-chips {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .status-chips::-webkit-scrollbar { display: none; }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #E2E8F0;
+      color: var(--text-sub);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .status-chip.filtered {
+      background: #DBEAFE;
+      color: #1E40AF;
+    }
+
+    /* 学習進捗バー */
+    .progress-bar-wrap {
+      width: 100%;
+      height: 6px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .progress-seg {
+      height: 100%;
+      transition: width 0.25s ease;
+    }
+    .progress-seg.easy { background: var(--easy); }
+    .progress-seg.normal { background: var(--normal); }
+    .progress-seg.hard { background: var(--hard); }
+
+    /* ===== メインビュー切り替え ===== */
+    .main-stage {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .view-panel {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+    }
+
+    .view-panel.active {
+      display: flex;
+    }
+
+    /* ===== フラッシュカード画面 ===== */
+    .card-workspace {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 4px 0 6px;
+    }
+
+    /* カード本体 */
+    .flashcard-container {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      perspective: 1200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flashcard {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 18px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .flashcard:active {
+      transform: scale(0.992);
+    }
+
+    .flashcard.swipe-left {
+      transform: translateX(-28px) rotate(-2deg);
+      opacity: 0.6;
+    }
+
+    .flashcard.swipe-right {
+      transform: translateX(28px) rotate(2deg);
+      opacity: 0.6;
+    }
+
+    /* カード上部バー (ジャンルバッジ・問題番号・現在の評価・タイマー) */
+    .card-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .card-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .card-no-badge {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 4px 9px;
+      border-radius: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card-genre-badge {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+      background: #F1F5F9;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .card-mark-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .card-mark-pill.easy { background: var(--easy-bg); color: #047857; border: 1px solid var(--easy-border); }
+    .card-mark-pill.normal { background: var(--normal-bg); color: #B45309; border: 1px solid var(--normal-border); }
+    .card-mark-pill.hard { background: var(--hard-bg); color: #B91C1C; border: 1px solid var(--hard-border); }
+    .card-mark-pill.unlearned { background: #F8FAFC; color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* 5秒カウントダウンタイマー表示 */
+    .timer-widget {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      color: var(--text-sub);
+      transition: all 0.2s;
+    }
+    .timer-widget.running {
+      background: #EFF6FF;
+      border-color: #93C5FD;
+      color: var(--primary);
+    }
+    .timer-widget.urgent {
+      background: #FEF2F2;
+      border-color: #FCA5A5;
+      color: var(--hard);
+      animation: pulseUrgent 0.5s infinite alternate;
+    }
+    @keyframes pulseUrgent {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+
+    /* タイマープログレスライン */
+    .timer-bar-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: transparent;
+      overflow: hidden;
+    }
+    .timer-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #2563EB, #06B6D4);
+      transition: width 0.1s linear;
+    }
+    .timer-bar-fill.urgent {
+      background: linear-gradient(90deg, #F59E0B, #EF4444);
+    }
+
+    /* カード中央コンテンツ領域 */
+    .card-body {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      overflow-y: auto;
+      padding: 6px 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* 表面：日本語フレーズ */
+    .question-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .jp-phrase {
+      font-size: clamp(19px, 5.2vw, 24px);
+      font-weight: 800;
+      line-height: 1.45;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+      word-break: auto-phrase;
+    }
+
+    /* 裏面（解答エリア） */
+    .answer-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
+      margin: 2px 0;
+    }
+
+    .answer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .answer-section.hidden {
+      display: none;
+    }
+
+    .en-phrase-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .en-phrase {
+      font-size: clamp(18px, 5vw, 23px);
+      font-weight: 800;
+      line-height: 1.38;
+      color: var(--primary-dark);
+      letter-spacing: -0.01em;
+      flex: 1;
+    }
+
+    .speak-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid #BFDBFE;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+      transition: transform 0.12s ease, background 0.15s;
+    }
+    .speak-btn:active {
+      transform: scale(0.92);
+      background: #DBEAFE;
+    }
+    .speak-btn.speaking {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .point-box {
+      background: #F8FAFC;
+      border-left: 3.5px solid var(--primary);
+      border-radius: 6px 12px 12px 6px;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-sub);
+    }
+    .point-box strong {
+      color: var(--text-main);
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 2px;
+      font-size: 12px;
+    }
+
+    /* タップして解答を見るプロンプト */
+    .tap-reveal-prompt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 22px 16px;
+      border-radius: 16px;
+      border: 1.5px dashed #CBD5E1;
+      background: #F8FAFC;
+      color: var(--text-sub);
+      margin-top: 6px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .tap-reveal-prompt.hidden {
+      display: none;
+    }
+    .tap-reveal-prompt .tap-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tap-reveal-prompt .tap-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    /* カード下部ヒント */
+    .card-footer-hint {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding-top: 4px;
+      flex-shrink: 0;
+    }
+
+    /* ===== 下部コントロール群（片手操作最適化） ===== */
+    .controls-dock {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* 評価ボタン3つ（簡単・普通・難しい） */
+    .rating-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .rate-btn {
+      height: 48px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--border);
+      background: var(--bg-surface);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.15s, border-color 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.03);
+    }
+    .rate-btn:active {
+      transform: scale(0.95);
+    }
+    .rate-btn .rate-label {
+      font-size: 13.5px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .rate-btn .rate-sub {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .rate-btn.easy {
+      border-color: var(--easy-border);
+      color: #047857;
+    }
+    .rate-btn.easy.selected {
+      background: var(--easy);
+      border-color: var(--easy);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+    .rate-btn.easy.selected .rate-sub { color: rgba(255,255,255,0.85); }
+
+    .rate-btn.normal {
+      border-color: var(--normal-border);
+      color: #B45309;
+    }
+    .rate-btn.normal.selected {
+      background: var(--normal);
+      border-color: var(--normal);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+    .rate-btn.normal.selected .rate-sub { color: rgba(255,255,255,0.85); }
+
+    .rate-btn.hard {
+      border-color: var(--hard-border);
+      color: #B91C1C;
+    }
+    .rate-btn.hard.selected {
+      background: var(--hard);
+      border-color: var(--hard);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+    .rate-btn.hard.selected .rate-sub { color: rgba(255,255,255,0.85); }
+
+    /* ナビゲーション行（前へ・裏返す・次へ） */
+    .nav-group {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr 1fr;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      height: 46px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(15, 23, 42, 0.04);
+      transition: transform 0.1s ease, background 0.15s;
+    }
+    .nav-btn:active {
+      transform: scale(0.96);
+      background: var(--bg-subtle);
+    }
+    .nav-btn.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+    .nav-btn.primary:active {
+      background: var(--primary-dark);
+    }
+
+    /* ===== 下部タブバー ===== */
+    .bottom-tabbar {
+      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 4px;
+      margin-top: 2px;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+    }
+
+    .tab-item {
+      height: 42px;
+      border-radius: 12px;
+      border: none;
+      background: transparent;
+      color: var(--text-sub);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      font-size: 10.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .tab-item.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    /* ===== 全問一覧リスト画面 ===== */
+    .list-view-header {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 4px 0 8px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .search-input-wrap {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 38px;
+      border-radius: 11px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      padding: 0 30px 0 32px;
+      font-size: 14px;
+      color: var(--text-main);
+      outline: none;
+      user-select: text;
+      -webkit-user-select: text;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .search-clear {
+      position: absolute;
+      right: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: none;
+      background: #CBD5E1;
+      color: #fff;
+      font-size: 11px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .list-scroll-container {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-bottom: 12px;
+    }
+
+    .list-card-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.1s ease, border-color 0.15s;
+    }
+    .list-card-item:active {
+      transform: scale(0.99);
+      background: var(--bg-subtle);
+    }
+
+    .list-item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .list-item-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .list-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .mini-speak-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1px solid #BFDBFE;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .list-jp {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .list-en {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      line-height: 1.35;
+    }
+    .list-en.masked {
+      filter: blur(5px);
+      user-select: none;
+    }
+
+    /* ===== ボトムシート / モーダル共通 ===== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .bottom-sheet {
+      width: 100%;
+      max-width: 520px;
+      max-height: 86dvh;
+      background: var(--bg-surface);
+      border-radius: 24px 24px 0 0;
+      padding: 14px 16px calc(max(var(--safe-bottom), 14px) + 6px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 -10px 30px rgba(15, 23, 42, 0.15);
+      transform: translateY(100%);
+      transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .modal-backdrop.open .bottom-sheet {
+      transform: translateY(0);
+    }
+
+    .sheet-handle {
+      width: 40px;
+      height: 5px;
+      border-radius: 999px;
+      background: #CBD5E1;
+      margin: 0 auto 2px;
+      flex-shrink: 0;
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .sheet-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .sheet-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: #F1F5F9;
+      color: var(--text-sub);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .sheet-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-right: 2px;
+    }
+
+    .genre-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .genre-row-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .genre-row-card.current-filter {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .genre-row-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .genre-name-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .genre-index-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      background: #E2E8F0;
+      color: var(--text-sub);
+      font-size: 11px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .genre-title-text {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .genre-stats-text {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-sub);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .genre-action-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .genre-act-btn {
+      padding: 7px 10px;
+      border-radius: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .genre-act-btn:active {
+      transform: scale(0.97);
+    }
+    .genre-act-btn.filter-btn {
+      background: var(--primary-soft);
+      border-color: #BFDBFE;
+      color: var(--primary);
+    }
+
+    /* ソート＆フィルター用チップ群 */
+    .option-section-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+    }
+
+    .option-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .option-radio-btn {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      text-align: left;
+    }
+    .option-radio-btn.active {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+    }
+
+    .diff-filter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+
+    /* 設定トグル行 */
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--bg-subtle);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .setting-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .setting-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .setting-desc {
+      font-size: 11.5px;
+      color: var(--text-sub);
+    }
+
+    .toggle-switch {
+      width: 48px;
+      height: 28px;
+      border-radius: 999px;
+      background: #CBD5E1;
+      border: none;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+    .toggle-switch::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+    .toggle-switch.on {
+      background: var(--primary);
+    }
+    .toggle-switch.on::after {
+      transform: translateX(20px);
+    }
+
+    .danger-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--hard-border);
+      background: var(--hard-bg);
+      color: var(--hard);
+      font-size: 13.5px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* ホーム画面追加ガイドステップ */
+    .guide-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-subtle);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+    .guide-step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .guide-step-text {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+    .guide-step-text small {
+      display: block;
+      color: var(--text-sub);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* 空状態（該当問題なし） */
+    .empty-state {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      gap: 12px;
+      background: var(--bg-surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+    }
+
+    /* トースト通知 */
+    .toast {
+      position: fixed;
+      top: calc(max(var(--safe-top), 12px) + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: rgba(15, 23, 42, 0.92);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- 上部ヘッダー -->
+    <header class="top-header">
+      <div class="header-row-1">
+        <div class="app-brand">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <button type="button" class="genre-pill-btn" id="open-genre-btn" title="ジャンル選択・ジャンプ">
+            <span class="truncate" id="header-genre-label">全24ジャンル</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+
+        <div class="header-actions">
+          <!-- 5秒タイマーON/OFFトグルボタン -->
+          <button type="button" class="icon-btn" id="toggle-timer-btn" title="5秒カウントダウンタイマー切替">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M9 2h6"/></svg>
+            <span id="timer-btn-text">5秒:OFF</span>
+          </button>
+          <!-- 設定ボタン -->
+          <button type="button" class="icon-btn" id="open-settings-btn" title="設定・学習記録管理">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+          <!-- iPhoneホーム画面追加ガイドボタン（？） -->
+          <button type="button" class="icon-btn" id="open-guide-btn" title="iPhoneのホーム画面に追加する方法">
+            ？
+          </button>
+        </div>
+      </div>
+
+      <!-- 問題番号・現在のフィルター/ソート状態 -->
+      <div class="header-row-2">
+        <div class="counter-badge" id="header-counter-text">No.1 / 100</div>
+        <div class="status-chips">
+          <span class="status-chip" id="chip-filter-status" title="タップしてフィルター変更">すべて (100問)</span>
+          <span class="status-chip" id="chip-sort-status" title="タップしてソート変更">番号順</span>
+        </div>
+      </div>
+
+      <!-- 3色学習進捗バー -->
+      <div class="progress-bar-wrap" title="学習進捗（緑:簡単 / 黄:普通 / 赤:難しい）">
+        <div class="progress-seg easy" id="prog-easy" style="width: 0%"></div>
+        <div class="progress-seg normal" id="prog-normal" style="width: 0%"></div>
+        <div class="progress-seg hard" id="prog-hard" style="width: 0%"></div>
+      </div>
+    </header>
+
+    <!-- メインステージ -->
+    <main class="main-stage">
+      <!-- ① フラッシュカード演習ビュー -->
+      <section class="view-panel active" id="view-flashcard">
+        <div class="card-workspace" id="card-workspace">
+          <!-- フラッシュカード -->
+          <div class="flashcard-container">
+            <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="フラッシュカード（タップで解答表示）">
+              <div class="timer-bar-track">
+                <div class="timer-bar-fill" id="timer-bar-fill"></div>
+              </div>
+
+              <!-- カード上部：問題番号・ジャンル・現在の評価・カウントダウン -->
+              <div class="card-top-bar">
+                <div class="card-meta-left">
+                  <span class="card-no-badge" id="card-no-badge">No.1 / 100</span>
+                  <span class="card-genre-badge" id="card-genre-badge">動詞</span>
+                  <span class="card-mark-pill unlearned" id="card-mark-pill">未学習</span>
+                </div>
+                <div class="timer-widget" id="card-timer-widget" style="display: none;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                  <span id="card-timer-sec">5.0s</span>
+                </div>
+              </div>
+
+              <!-- カード中央：問題（表面）＆解答（裏面） -->
+              <div class="card-body">
+                <div class="question-section">
+                  <div class="section-label">
+                    <span>🇯🇵 QUESTION</span>
+                  </div>
+                  <div class="jp-phrase" id="card-jp-text">毎朝ジムに通っています。</div>
+                </div>
+
+                <!-- 裏面非表示時のタップ案内 -->
+                <div class="tap-reveal-prompt" id="tap-reveal-prompt">
+                  <div class="tap-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span>タップして英語＆解説を表示</span>
+                  </div>
+                  <div class="tap-sub">まずは頭の中で英語を組み立ててみましょう</div>
+                </div>
+
+                <!-- 裏面表示エリア -->
+                <div class="answer-section hidden" id="answer-section">
+                  <div class="answer-divider"></div>
+                  <div class="section-label">
+                    <span>🇺🇸 ANSWER</span>
+                  </div>
+                  <div class="en-phrase-row">
+                    <div class="en-phrase" id="card-en-text">I go to the gym every morning.</div>
+                    <button type="button" class="speak-btn" id="card-speak-btn" title="英語音声を読み上げる" aria-label="英語音声を読み上げる">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                    </button>
+                  </div>
+                  <div class="point-box">
+                    <strong>💡 解説ポイント</strong>
+                    <div id="card-point-text">毎朝という習慣なので動詞の時制は現在形。ジムの前には必ずtheがつきます（the gymとセットで覚える）。</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- カード下部ヒント -->
+              <div class="card-footer-hint">
+                <span id="card-Pos-indicator">1 / 100 問目</span>
+                <span>左右スワイプで移動 / タップで開閉</span>
+              </div>
+            </div>
+
+            <!-- フィルター結果が0件のときの表示 -->
+            <div class="empty-state" id="empty-card-state" style="display: none;">
+              <div style="font-size: 34px;">🎯</div>
+              <div style="font-size: 16px; font-weight: 800;">条件に一致する問題がありません</div>
+              <div style="font-size: 13px; color: var(--text-sub);">現在のフィルター条件では該当する問題が0件です。フィルターを解除して演習を続けましょう。</div>
+              <button type="button" class="nav-btn primary" id="reset-filter-empty-btn" style="padding: 0 20px; margin-top: 6px;">フィルターをすべて解除</button>
+            </div>
+          </div>
+
+          <!-- 下部操作エリア（評価ボタン＋前後ナビ） -->
+          <div class="controls-dock" id="controls-dock">
+            <div class="rating-group">
+              <button type="button" class="rate-btn hard" data-rate="hard" id="rate-btn-hard">
+                <span class="rate-label">🔥 難しい</span>
+                <span class="rate-sub">要復習</span>
+              </button>
+              <button type="button" class="rate-btn normal" data-rate="normal" id="rate-btn-normal">
+                <span class="rate-label">👌 普通</span>
+                <span class="rate-sub">もう少し</span>
+              </button>
+              <button type="button" class="rate-btn easy" data-rate="easy" id="rate-btn-easy">
+                <span class="rate-label">✨ 簡単</span>
+                <span class="rate-sub">マスター</span>
+              </button>
+            </div>
+
+            <div class="nav-group">
+              <button type="button" class="nav-btn" id="prev-card-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                <span>前の問題</span>
+              </button>
+              <button type="button" class="nav-btn primary" id="flip-card-btn">
+                <span>解答を見る</span>
+              </button>
+              <button type="button" class="nav-btn" id="next-card-btn">
+                <span>次の問題</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ② 全問一覧リスト画面 -->
+      <section class="view-panel" id="view-list">
+        <div class="list-view-header">
+          <div class="search-row">
+            <div class="search-input-wrap">
+              <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <input type="search" class="search-input" id="list-search-input" placeholder="日本語・英語・解説から検索...">
+              <button type="button" class="search-clear" id="list-search-clear">×</button>
+            </div>
+            <button type="button" class="icon-btn" id="toggle-mask-en-btn" title="一覧の英語を隠す/表示">
+              英語を隠す
+            </button>
+          </div>
+        </div>
+
+        <div class="list-scroll-container" id="list-scroll-container"></div>
+      </section>
+    </main>
+
+    <!-- 下部ナビゲーションタブバー -->
+    <nav class="bottom-tabbar" aria-label="メインメニュー">
+      <button type="button" class="tab-item active" id="tab-flashcard">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="14" x="3" y="5" rx="2"/><path d="M7 15h4M7 11h8"/></svg>
+        <span>カード演習</span>
+      </button>
+      <button type="button" class="tab-item" id="tab-genres">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <span id="tab-genres-label">全24ジャンル</span>
+      </button>
+      <button type="button" class="tab-item" id="tab-filter-sort">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+        <span>並替・絞込</span>
+      </button>
+      <button type="button" class="tab-item" id="tab-list">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+        <span>全100問一覧</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- ===== モーダル1: ジャンル選択＆ジャンプ ===== -->
+  <div class="modal-backdrop" id="modal-genres" aria-hidden="true">
+    <div class="bottom-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">📚 ジャンル一覧（ジャンプ＆絞り込み）</div>
+        <button type="button" class="sheet-close-btn" data-close="modal-genres">×</button>
+      </div>
+      <div style="font-size: 12px; color: var(--text-sub); line-height: 1.4;">
+        各ジャンルの<strong>「先頭へジャンプ（全体モード）」</strong>または<strong>「このジャンルのみ絞り込み」</strong>をワンタップで選択できます。
+      </div>
+      <div class="sheet-body">
+        <button type="button" class="option-radio-btn" id="all-genres-reset-btn">
+          <span>🌐 全ジャンル表示（全100問モードに戻す）</span>
+          <span id="all-genres-total-stat" style="font-size:12px; color:var(--primary);">100問</span>
+        </button>
+        <div class="genre-grid" id="genre-sheet-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== モーダル2: ソート＆フィルター設定 ===== -->
+  <div class="modal-backdrop" id="modal-filter-sort" aria-hidden="true">
+    <div class="bottom-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">🔍 ソート（並び替え）＆絞り込み</div>
+        <button type="button" class="sheet-close-btn" data-close="modal-filter-sort">×</button>
+      </div>
+      <div class="sheet-body">
+        <div>
+          <div class="option-section-title">難易度フィルター（絞り込み）</div>
+          <div class="diff-filter-grid" id="diff-filter-options">
+            <button type="button" class="option-radio-btn active" data-diff="all">
+              <span>すべて</span><span id="count-diff-all">100</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-diff="unlearned">
+              <span>未学習のみ</span><span id="count-diff-unlearned">100</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-diff="hard">
+              <span>🔥 難しいのみ</span><span id="count-diff-hard">0</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-diff="normal">
+              <span>👌 普通のみ</span><span id="count-diff-normal">0</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-diff="easy">
+              <span>✨ 簡単のみ</span><span id="count-diff-easy">0</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="option-section-title">ジャンルフィルター</div>
+          <select id="genre-filter-select" style="width:100%; height:42px; border-radius:12px; border:1.5px solid var(--border); padding:0 12px; font-size:14px; font-weight:700; background:var(--bg-surface); color:var(--text-main);">
+            <option value="ALL">全ジャンル（すべて表示）</option>
+          </select>
+        </div>
+
+        <div>
+          <div class="option-section-title">ソート順（並び替え）</div>
+          <div class="option-list" id="sort-options">
+            <button type="button" class="option-radio-btn active" data-sort="id">
+              <span>🔢 問題番号順（デフォルト）</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-sort="hard">
+              <span>🔥 難しい順（難しい → 普通 → 簡単 → 未学習）</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-sort="easy">
+              <span>✨ 簡単順（簡単 → 普通 → 難しい → 未学習）</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-sort="unlearned">
+              <span>🆕 未学習優先順（未学習 → 難しい → 普通 → 簡単）</span>
+            </button>
+            <button type="button" class="option-radio-btn" data-sort="random">
+              <span>🎲 ランダム（シャッフル）</span>
+              <span style="font-size:11px; color:var(--primary);">タップで再シャッフル</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== モーダル3: 設定＆学習記録リセット ===== -->
+  <div class="modal-backdrop" id="modal-settings" aria-hidden="true">
+    <div class="bottom-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">⚙️ アプリ設定・学習記録</div>
+        <button type="button" class="sheet-close-btn" data-close="modal-settings">×</button>
+      </div>
+      <div class="sheet-body">
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">5秒カウントダウンタイマー</div>
+            <div class="setting-desc">問題表示から5秒後に自動で解答をオープンします</div>
+          </div>
+          <button type="button" class="toggle-switch" id="setting-timer-toggle" aria-label="5秒タイマー切替"></button>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">裏面表示時に自動で英語を読み上げ</div>
+            <div class="setting-desc">解答を開いた瞬間に英語音声を自動再生します</div>
+          </div>
+          <button type="button" class="toggle-switch" id="setting-autospeak-toggle" aria-label="自動読み上げ切替"></button>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">評価ボタンタップ後に自動で次の問題へ</div>
+            <div class="setting-desc">「簡単・普通・難しい」を押すと0.25秒後に次へ進みます</div>
+          </div>
+          <button type="button" class="toggle-switch" id="setting-autonext-toggle" aria-label="評価後自動次へ切替"></button>
+        </div>
+
+        <div class="setting-row">
+          <div class="setting-info">
+            <div class="setting-title">英語音声の読み上げ速度</div>
+            <div class="setting-desc">Web Speech APIの発音スピードを調整</div>
+          </div>
+          <select id="setting-speech-rate" style="height:36px; border-radius:10px; border:1px solid var(--border); padding:0 10px; font-weight:700; font-size:13px;">
+            <option value="1.0">1.0x (標準)</option>
+            <option value="0.85">0.85x (少しゆっくり)</option>
+            <option value="0.7">0.7x (ゆっくり)</option>
+            <option value="1.15">1.15x (速め)</option>
+          </select>
+        </div>
+
+        <div style="padding-top: 6px; display: flex; flex-direction: column; gap: 8px;">
+          <div class="option-section-title">学習記録の管理・アップデート反映</div>
+          <div id="settings-stats-summary" style="font-size:13px; color:var(--text-sub); background:var(--bg-subtle); padding:10px 12px; border-radius:12px; border:1px solid var(--border);"></div>
+          <button type="button" class="option-radio-btn" id="reload-app-btn" style="justify-content:center; color:var(--primary); border-color:#BFDBFE; background:var(--primary-soft);">
+            <span>🔄 アプリを最新に更新（再読み込み）</span>
+          </button>
+          <button type="button" class="danger-btn" id="reset-records-btn">🗑️ 学習記録をすべてリセットする</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== モーダル4: iPhoneのホーム画面に追加ガイド ===== -->
+  <div class="modal-backdrop" id="modal-guide" aria-hidden="true">
+    <div class="bottom-sheet">
+      <div class="sheet-handle"></div>
+      <div class="sheet-header">
+        <div class="sheet-title">📱 iPhoneのホーム画面に追加する方法</div>
+        <button type="button" class="sheet-close-btn" data-close="modal-guide">×</button>
+      </div>
+      <div class="sheet-body">
+        <div style="font-size: 13px; color: var(--text-sub); line-height: 1.5;">
+          このWebアプリは<strong>PWA（フルスクリーン起動）</strong>に対応しています。<strong>Safari</strong>でURLを開いてホーム画面に追加すると、アドレスバーやツールバーが消えて本物のアプリのように使えます！
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">1</div>
+          <div class="guide-step-text">
+            <strong>iPhoneの「Safari」でこのページを開く</strong>
+            <small>※Googleドライブやファイルアプリのプレビュー画面ではなく、<strong>Safari（URLバーがある状態）</strong>で開きます。</small>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">2</div>
+          <div class="guide-step-text">
+            <strong>Safari下部の「共有ボタン」をタップ</strong>
+            <small>画面下部中央にある四角から上向き矢印が出ているアイコン（<svg style="vertical-align:middle;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.3"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>）をタップします。</small>
+          </div>
+        </div>
+
+        <div class="guide-step">
+          <div class="guide-step-num">3</div>
+          <div class="guide-step-text">
+            <strong>メニューから「ホーム画面に追加」を選択</strong>
+            <small>メニューを少し下にスクロールし、「<strong>ホーム画面に追加（＋）</strong>」→ 右上の「<strong>追加</strong>」をタップすれば完了です！</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- トースト通知 -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // =========================================================================
+    // 【収録データ（全100問：基本23ジャンル90問 ＋ 応用・まとめ10問）】※1問も省略なし
+    // =========================================================================
+    const QUESTIONS_DATA = [
+      { "id": 1, "genre": "動詞", "jp": "毎朝ジムに通っています。", "en": "I go to the gym every morning.", "point": "毎朝という習慣なので動詞の時制は現在形。ジムの前には必ずtheがつきます（the gymとセットで覚える）。" },
+      { "id": 2, "genre": "動詞", "jp": "めっちゃ腹が減った。", "en": "I'm starving.", "point": "お腹が減った＝hungry、とてもお腹が減った状態はstarvingになります。" },
+      { "id": 3, "genre": "動詞", "jp": "オーストラリアに行きたいわ〜。", "en": "I want to go to Australia.", "point": "want to＋動詞の原形で「〜したい」。" },
+      { "id": 4, "genre": "動詞", "jp": "あの人頭おかしいよ。", "en": "He's crazy.", "point": "他にも「いかれている」の形容詞としてpsycho、insane、madなど色々表現があります。" },
+      { "id": 5, "genre": "疑問文", "jp": "ビールとかはよく飲む？", "en": "Do you often drink beer and stuff?", "point": "and stuffはよく出てくる表現で、エトセトラといった感じで「〜とか」というニュアンスです。" },
+      { "id": 6, "genre": "疑問文", "jp": "彼 大丈夫？", "en": "Is he alright?", "point": "be動詞の疑問文。" },
+      { "id": 7, "genre": "疑問文", "jp": "昨日お父さんとあの借金のこと話した？", "en": "Did you speak to your dad about the debt yesterday?", "point": "フランクな場面ではfather→dad、mother→momの方が一般的な会話でよく使われます。" },
+      { "id": 8, "genre": "疑問文", "jp": "ねぇ 昨日の夜 私かなり酔ってた？", "en": "Hey, was I really drunk last night?", "point": "フランクな強調表現のreally＋形容詞。drunkは結構酔っている状態を指し、ほろ酔い状態はtipsyと言います。" },
+      { "id": 9, "genre": "否定文", "jp": "それはわかんないな〜。", "en": "I have no idea about it.", "point": "I don't know.ばかり連発すると表現が単調になるので、I have no idea (about it).も引き出しとして持っておくと良いです。" },
+      { "id": 10, "genre": "否定文", "jp": "うちの親は全然金持ちじゃないよ。", "en": "My parents are not rich at all.", "point": "「全然〜ない」「全くもって〜ない」と表現したい時は否定文＋at allを使いましょう。" },
+      { "id": 11, "genre": "否定文", "jp": "田中さんと高橋さんは結局 来ませんでしたよ。", "en": "Tanaka and Takahashi didn't show up in the end.", "point": "「結局」という表現はin the end、またはeventuallyと表現します。" },
+      { "id": 12, "genre": "否定文", "jp": "うちの職場は特に悪くないかな。", "en": "My workplace is not too bad.", "point": "not too badは「悪くないかな！結構いい！」という意味でオーストラリアなどでもよく耳にします。" },
+      { "id": 13, "genre": "冠詞", "jp": "新潟行きのチケットを買わないと。", "en": "I need to buy a ticket to Niigata.", "point": "チケットは可算名詞で1枚のチケットということでa ticketと表現します。" },
+      { "id": 14, "genre": "冠詞", "jp": "俺の彼女はめっちゃたまごが好きなんだよね。", "en": "My girlfriend likes eggs so much.", "point": "特定の卵ではなく「卵という食べ物全般」が好きなので複数形にしてeggsとなります。" },
+      { "id": 15, "genre": "冠詞", "jp": "ちなみにそのノートパソコンは壊れているから。", "en": "The laptop doesn't work by the way.", "point": "双方がどのパソコンか共通の認識があるのでThe laptop。ノートPCとは言わずにlaptopと表現します。ちなみに＝by the way。" },
+      { "id": 16, "genre": "冠詞", "jp": "包丁を取ってもらえる？", "en": "Could you pass me a knife?", "point": "包丁は数えられる名詞で1本の包丁を取ってもらいたいので冠詞のaがつきます。" },
+      { "id": 17, "genre": "命令文", "jp": "帰ろうよ。", "en": "Let's go home.", "point": "Let'sはLet usの省略形。Let＋人＋動詞の原形で「人に〜させてあげる」という使役動詞の命令文です。" },
+      { "id": 18, "genre": "命令文", "jp": "やりたいならやりなよ！", "en": "Do it if you want to do it.", "point": "動詞の原形から始まる命令文。" },
+      { "id": 19, "genre": "命令文", "jp": "時間通りにここに来てください。", "en": "Please be here on time.", "point": "時間通り＝on time。命令文もPleaseをつけるとソフトな表現になります。" },
+      { "id": 20, "genre": "命令文", "jp": "そうネガティブに考えるなって。", "en": "Don't be negative about it.", "point": "悲観的はpessimistic、反対の楽観的はoptimisticという形容詞でも表せます。" },
+      { "id": 21, "genre": "現在進行形", "jp": "今料理をしているところ。", "en": "I'm cooking now.", "point": "今まさに進行中の動作を表す現在進行形。" },
+      { "id": 22, "genre": "現在進行形", "jp": "うちの弟は今大学で英語を学んでいるよ。", "en": "My younger brother is studying English in university.", "point": "現在進行形で現在の継続的な活動も表せます。" },
+      { "id": 23, "genre": "現在進行形", "jp": "今夜そっちに行くからね。", "en": "I'm coming to your place tonight.", "point": "可能性の高い近い未来の予定も現在進行形で表現することができます。" },
+      { "id": 24, "genre": "現在進行形", "jp": "うちのおばさんが今仕事でイギリスに住んでいるんだよね。", "en": "My aunty is living in the UK for work now.", "point": "ずっと定住しているわけではなく、一時的に期間が決まって滞在している場合は現在進行形で表すことができます。" },
+      { "id": 25, "genre": "過去形", "jp": "昨日新しく出たiPhoneを買ってきたよ。", "en": "I bought the new released iPhone.", "point": "過去の出来事を表す過去形（buyの過去形bought）。" },
+      { "id": 26, "genre": "過去形", "jp": "その番組はうちの親もよく観てたわ。", "en": "My parents used to watch that show too.", "point": "used to＋動詞の原形で過去の習慣「よく〜していた」を表します。" },
+      { "id": 27, "genre": "過去形", "jp": "彼と昨日話さなかったの？", "en": "Didn't you talk to him yesterday?", "point": "「〜しなかったの？」と確認する否定疑問文の形です。" },
+      { "id": 28, "genre": "過去形", "jp": "その不動産営業マンの話を聞いた時は本当に浅はかだったわ。", "en": "I was so naive when I spoke to the real estate agent.", "point": "英語のnaiveは「お人好しで騙されやすい・世間知らず」というイメージです。" },
+      { "id": 29, "genre": "未来形", "jp": "明日は学校に行く？", "en": "Will you go to school tomorrow?", "point": "未来の予定や意思を尋ねるWill you〜?の形。" },
+      { "id": 30, "genre": "未来形", "jp": "明後日は雨が降ると思うけど。", "en": "I think it will rain the day after tomorrow.", "point": "天気・気温・時間・日付・曜日・距離・季節などの話をする時、主語はitになります。" },
+      { "id": 31, "genre": "未来形", "jp": "12月20日からヨーロッパに旅行に行ってくる。", "en": "I am going to travel Europe from 20th December.", "point": "be going toはすでに予定されている未来のイメージ、willは不確定な未来や予測のイメージになります。" },
+      { "id": 32, "genre": "未来形", "jp": "僕と付き合ってもらえますか？", "en": "Will you be my girlfriend?", "point": "相手に依頼・申し出をするWill you〜?の表現。" },
+      { "id": 33, "genre": "未来形", "jp": "うちらが家に着く頃には多分母ちゃんはリビングでテレビを観てるわ。", "en": "My mom will probably be watching TV in our living room when we get home.", "point": "whenから始まる時を表す副詞節の中では、未来の話でも動詞は未来形にならず現在形で表されるルールがあります。" },
+      { "id": 34, "genre": "未来形", "jp": "明日の今頃にはハワイでくつろいでいるだろうね。", "en": "By this time tomorrow, we'll be relaxing in Hawaii.", "point": "未来のある一点を指して「その時に〜しているだろう」というニュアンスを出すのが未来進行形（will be -ing）です。" },
+      { "id": 35, "genre": "助動詞", "jp": "チキンのもも肉を200グラムもらえますか？", "en": "Can I have 200grams of chicken thigh fillet please?", "point": "「〜してもいいですか？」という許可を求めるcanになります。" },
+      { "id": 36, "genre": "助動詞", "jp": "（相手に対して）半年もあれば英語は話せるようになりますよ。", "en": "You will be able to speak English in six months.", "point": "未来の可能を表すwill be able to＋動詞の原形。" },
+      { "id": 37, "genre": "助動詞", "jp": "もしかしたら今日は雪が降るかもね。", "en": "It might snow today.", "point": "可能性を表すmightは大体5%〜20%くらいの感覚です。" },
+      { "id": 38, "genre": "助動詞", "jp": "ここに鍵を置いておくわ。まず大丈夫でしょ。", "en": "I will leave the key here. It should be fine.", "point": "可能性を表す助動詞のshouldは70%〜80%くらいといったニュアンスです。" },
+      { "id": 39, "genre": "助動詞", "jp": "この書類は今日出さないとダメですか？", "en": "Do I have to submit this paperwork today?", "point": "必要・義務を尋ねるDo I have to〜?の表現。" },
+      { "id": 40, "genre": "助動詞", "jp": "あの男の人 絶対に有名人でしょ！", "en": "That man must be famous!", "point": "強い確信「〜に違いない」を表すmust。" },
+      { "id": 41, "genre": "不定詞と動名詞", "jp": "新しいYouTubeチャンネルを始めることにしました！", "en": "I decided to start a new YouTube channel.", "point": "「動詞すること」をto＋動詞の原形で表現できます。" },
+      { "id": 42, "genre": "不定詞と動名詞", "jp": "英語を学ぶために海外に行きたいの？", "en": "Do you want to go abroad to study English?", "point": "「Vするために（目的）」もto＋動詞の原形で表現ができます。" },
+      { "id": 43, "genre": "不定詞と動名詞", "jp": "あなたと一緒にいれてそっちの親も喜んでいると思うよ。", "en": "I guess your parents are happy to be able to spend time with you.", "point": "感情の原因を表す不定詞（happy to V）。" },
+      { "id": 44, "genre": "不定詞と動名詞", "jp": "たまには仕事をするのもいいね。", "en": "It is nice to work sometimes.", "point": "It is 形容詞 to 動詞の原形＝「動詞するのが形容詞だ」という意味になります。" },
+      { "id": 45, "genre": "不定詞と動名詞", "jp": "タバコ吸うのをやめて。", "en": "Stop smoking.", "point": "今行われていることをやめるので動名詞のsmokingを使います。" },
+      { "id": 46, "genre": "不定詞と動名詞", "jp": "20歳の時にみんなで東京に行ったのを覚えてる？", "en": "Do you remember our going to Tokyo with everyone when we were 20?", "point": "文の主語と動名詞の主語が違う場合、動名詞の主語は所有格か目的格で表します。" },
+      { "id": 47, "genre": "不定詞と動名詞", "jp": "おばあちゃんが鍵を閉めたかどうか忘れたって。", "en": "Grandma forgot locking the door.", "point": "to lock（不定詞）は「これから閉めることを忘れた（未来）」、locking（動名詞）は「閉めたかどうかを忘れた（過去）」という違いがあります。" },
+      { "id": 48, "genre": "接続詞", "jp": "あなたが会社を辞めたいと思っているのは私たちも知っています。", "en": "We know that you want to quit working here.", "point": "接続詞のthatは省略可能です。" },
+      { "id": 49, "genre": "接続詞", "jp": "家に着いたら電話するね。", "en": "I'll give you a call when I get home.", "point": "接続詞when以下の副詞節の動詞は未来表現でも現在形にすること（要注意）。" },
+      { "id": 50, "genre": "接続詞", "jp": "もし予定が空いていたら今夜 飲みに行かない？", "en": "If you're free, would you like to go out for drinks tonight?", "point": "接続詞のifと仮定法のifとの混同に注意。実際に起こる「もし」の話は仮定法ではなく現在形を使います。" },
+      { "id": 51, "genre": "接続詞", "jp": "自分の知る限りだと彼女には彼氏はいないと思うんだけど。", "en": "As far as I know, she doesn't have a boyfriend.", "point": "As far as SVの表現で「SがVする限り」という意味です。" },
+      { "id": 52, "genre": "接続詞", "jp": "どこに行ったとしても結局は自分次第よ。", "en": "Wherever you go, it's up to you in the end.", "point": "be up to 人＝「人次第」、in the end＝「結局は」。" },
+      { "id": 53, "genre": "よく使う構文", "jp": "旅行をするには今のタイは暑すぎる。", "en": "It is too hot to travel in Thailand now.", "point": "too〜to Vは「too to構文」と呼ばれるもので、「Vするには形容詞すぎる」という意味です。" },
+      { "id": 54, "genre": "よく使う構文", "jp": "日本人にとってRを上手く発音するのは結構 難しい。", "en": "It is pretty hard for Japanese to pronounce R well.", "point": "It is 〜 for ... to Vは「...にとってVするのは〜」という超頻出構文です。" },
+      { "id": 55, "genre": "よく使う構文", "jp": "みなさんに聞こえるように少し大きめに話してもらえますか？", "en": "Could you speak a bit louder so that everyone can hear you?", "point": "目的を表すso that SVで「SがVするために」という意味です。" },
+      { "id": 56, "genre": "感嘆文", "jp": "どんだけ最高の試合だったんだよ！", "en": "What a great game that was.", "point": "What (a) 形容詞 名詞 SVの形で作る感嘆文です。" },
+      { "id": 57, "genre": "比較", "jp": "タカシの方がケンより歌が上手いと思うんだよな〜。", "en": "I think Takashi is a better singer than Ken.", "point": "比較級＋thanを使った比較表現。" },
+      { "id": 58, "genre": "比較", "jp": "今年は去年よりもお客さんが少ないね。", "en": "We have less customers this year than last year.", "point": "より少ない（less〜than）を使った比較表現。" },
+      { "id": 59, "genre": "比較", "jp": "福利厚生の面ではうちの会社は最高だと思うけどな。", "en": "I think my company is the best in terms of welfare benefits.", "point": "最上級の表現。in terms of〜で「〜に関しては」という意味になる頻出表現です。" },
+      { "id": 60, "genre": "比較", "jp": "ある調査によるとメルボルンは世界で1番住みやすい街の1つなんだって。", "en": "According to a research, Melbourne is one of the best cities to live in the world.", "point": "According to〜＝「〜によると」、one of 複数形＝「複数形名詞のうちの1つ」。" },
+      { "id": 61, "genre": "There is", "jp": "ホテルにコインランドリーはありますか？", "en": "Is there any launderette in the hotel?", "point": "存在を尋ねるIs there〜?の疑問文。" },
+      { "id": 62, "genre": "There is", "jp": "帰りの電車に自分以外誰もいなかった。", "en": "There was no one on the train apart from me on the way home.", "point": "Apart from〜＝「〜を除いては」。" },
+      { "id": 63, "genre": "There is", "jp": "何か他に言いたいことありますか？", "en": "Is there anything else you want to say?", "point": "anything else＝「何か他のこと」。" },
+      { "id": 64, "genre": "受動態", "jp": "留学すると価値観が変わるってよく言われていますよね。", "en": "It is often said that studying abroad changes your values.", "point": "It is said that SVの構文で「SがVだと言われている」を表す頻出表現です。" },
+      { "id": 65, "genre": "受動態", "jp": "この画像は投稿者によって削除されました。", "en": "This picture has been deleted by the poster.", "point": "現在完了の受動態（has been＋過去分詞）。" },
+      { "id": 66, "genre": "受動態", "jp": "タロサックの書籍“バカペラ”は2023年に出版されました。", "en": "The book of Tarosac “Bakapera” was published in 2023.", "point": "過去の受動態（was＋過去分詞）。" },
+      { "id": 67, "genre": "受動態", "jp": "この財布って本物の皮で作られていますか？", "en": "Is this wallet made of real leather?", "point": "be made of〜＝「（材料）で作られている」。" },
+      { "id": 68, "genre": "付加疑問文", "jp": "彼って18歳ですよね？", "en": "He's eighteen years old, isn't he?", "point": "肯定文の後に否定の疑問形を添える付加疑問文。" },
+      { "id": 69, "genre": "付加疑問文", "jp": "あのことを彼に話していないよね？", "en": "You didn't talk to him about it, did you?", "point": "否定文の後に肯定の疑問形を添える付加疑問文。" },
+      { "id": 70, "genre": "現在完了", "jp": "もう夕飯食べちゃったよ。", "en": "I've already had dinner.", "point": "完了を表す現在完了形（have already＋過去分詞）。" },
+      { "id": 71, "genre": "現在完了", "jp": "あの手紙が来ているかもうチェックしてくれた？", "en": "Have you checked to see if the mail has arrived yet?", "point": "if SVで「SがVかどうか」という意味になります。" },
+      { "id": 72, "genre": "現在完了", "jp": "それは1回も試したことがないわ。", "en": "I've never tried that.", "point": "経験の否定「一度も〜したことがない」を表すhave never＋過去分詞。" },
+      { "id": 73, "genre": "現在完了", "jp": "もうその映画って公開された？", "en": "Has that film been released yet?", "point": "現在完了＋受動態の疑問文。" },
+      { "id": 74, "genre": "分詞", "jp": "僕がやっている仕事はつまらない。", "en": "My job is boring.", "point": "「つまらない思いをさせる」という意味の動詞boreを進行形の形にした現在分詞boring。" },
+      { "id": 75, "genre": "分詞", "jp": "この仕事に飽きた。", "en": "I'm bored with my job.", "point": "この仕事に主語の自分が「飽きさせられている」ので過去分詞のboredが来ます。" },
+      { "id": 76, "genre": "分詞", "jp": "電車で隣に座っているおじさんが臭い。", "en": "The old man sitting next to me stinks.", "point": "「隣に座っている」という状態をsitting next to meという現在分詞の塊で後ろからThe old manを修飾しています。" },
+      { "id": 77, "genre": "分詞", "jp": "盗まれた腕時計が1年越しに返ってきたんだよ。", "en": "My stolen watch was returned a year later.", "point": "「盗まれた腕時計」をstolenという過去分詞1つの単語でwatchを前から修飾しています。" },
+      { "id": 78, "genre": "関係代名詞", "jp": "先週お勧めした脱毛サロンに行ってみた？", "en": "Have you tried the hair removal salon that I recommended you last week?", "point": "目的格の関係代名詞thatでthe hair removal salonを修飾。" },
+      { "id": 79, "genre": "関係代名詞", "jp": "先週 隣の部屋に引っ越してきた人がかなりマッチョなんだよね。", "en": "The man who moved into the next room last week is buff.", "point": "主格の関係代名詞whoでThe manを修飾。マッチョ＝buff。" },
+      { "id": 80, "genre": "関係代名詞", "jp": "新宿のHUBに先月行った時に会ったあの女の子とまだ遊んだりしてる？", "en": "Do you still hangout with the girl that we met in HUB in Shinjuku last week?", "point": "ネイティブの会話では先行詞が人でも物でも関係代名詞thatで表現することが多いです。" },
+      { "id": 81, "genre": "間接疑問文", "jp": "何を言っているのかわからない。", "en": "I don't know what you are talking about.", "point": "間接疑問文の文章では疑問詞の節の語順が「疑問詞＋S＋V」になるので間違えないよう注意（what are youにはならない）。" },
+      { "id": 82, "genre": "間接疑問文", "jp": "いくつか聞いてもいいですか？", "en": "Would you mind me asking how old you are?", "point": "how old you are（疑問詞＋S＋V）の間接疑問文。" },
+      { "id": 83, "genre": "間接疑問文", "jp": "彼女の誕生日に何を買うべきかさっぱりわからない。", "en": "I really don't know what I should buy for my girlfriend's birthday.", "point": "what I should buy（疑問詞＋S＋V）の間接疑問文。" },
+      { "id": 84, "genre": "間接疑問文", "jp": "どこでその書類をもらえるのか田中さんなら知っていると思う？", "en": "Do you think Tanaka knows where we can get the paperwork?", "point": "where we can get〜（疑問詞＋S＋V）の間接疑問文。" },
+      { "id": 85, "genre": "疑問詞と不定詞", "jp": "何をすればいいかわからない。", "en": "I don't know what to do.", "point": "what to doで「何をすべきか」。" },
+      { "id": 86, "genre": "疑問詞と不定詞", "jp": "彼は“腰痛”の漢字の書き方がわからない。", "en": "He doesn't know how to write “backache” in Kanji.", "point": "how to Vで「Vの仕方・どうやってVするか」。" },
+      { "id": 87, "genre": "疑問詞と不定詞", "jp": "この課題をいつ提出するかを知ってる？", "en": "Do you know when to submit this assignment?", "point": "when to Vで「いつVすべきか」。" },
+      { "id": 88, "genre": "仮定法", "jp": "自分がその立場なら絶対にトライするよ。", "en": "If I were at your position, I would definitely try that.", "point": "現在の事実と反する仮定を表す仮定法過去（If S 過去形, S would＋動詞の原形）。" },
+      { "id": 89, "genre": "仮定法", "jp": "仕事中にスマホがいじれたらいいのに。", "en": "I wish I could use my phone while I'm working.", "point": "「〜ならいいのに」と現在の願望を表すI wish＋仮定法過去。" },
+      { "id": 90, "genre": "仮定法", "jp": "もし宝くじが当たったとしたらまず何を買う？", "en": "If you won the lottery, what would you buy first?", "point": "起こる可能性が低い仮定の話をする仮定法過去。" },
+      { "id": 91, "genre": "応用・まとめ", "jp": "毎晩遅寝する彼にとって早起きは相当キツい。", "en": "It’s very hard for him, who usually goes to bed late, to get up early.", "point": "It is 形容詞 for 〜 to V＝〜にとってVすることは形容詞だ" },
+      { "id": 92, "genre": "応用・まとめ", "jp": "成功は一日にしてならず。", "en": "Success doesn't happen overnight.", "point": "overnight＝一夜にして" },
+      { "id": 93, "genre": "応用・まとめ", "jp": "ついにうちの両親が7年付き合っている彼女との結婚を認めてくれた。", "en": "Finally, my parents allow me to get married to my girlfriend, who (whom) I’ve been with for seven years.", "point": "Allow 〜 to V＝〜がVすることを許可する" },
+      { "id": 94, "genre": "応用・まとめ", "jp": "ギターを弾くときは窓を閉めておくようにお父さんに言われなかった？", "en": "Didn’t your dad tell you to keep the window closed while you are playing the guitar?", "point": "この様に否定疑問文になります。" },
+      { "id": 95, "genre": "応用・まとめ", "jp": "飛行機に乗る前に連絡を入れなかったから嫁に怒られた。", "en": "My wife got mad at me because I didn’t call (text) her before boarding the plane.", "point": "Get 形容詞＝形容詞な状態になる" },
+      { "id": 96, "genre": "応用・まとめ", "jp": "うちの親曰く10年くらい前は田中さんのとこは高橋さんのとこと同じくらい金持ちだったらしいよ。", "en": "According to my parents, about 10 years ago, the Tanaka family was as rich as the Takahashi family.", "point": "苗字の前にtheがつくと「◯◯家」の様なニュアンスになります。（こんな頻出表現もあります）Apparently=聞いた話では" },
+      { "id": 97, "genre": "応用・まとめ", "jp": "ホワイトボードを買って仕事の効率化を図った方が良いよ。", "en": "You should buy a whiteboard to make your work more efficient.", "point": "Shouldは「〜すべき」という強い表現だけでなく、この様に「〜した方が良いよ」という軽いオススメにも使われます。" },
+      { "id": 98, "genre": "応用・まとめ", "jp": "利根川って確か日本で二番目に長い川だよね？", "en": "The Tone River is the second longest river in Japan, isn’t it? (right?)", "point": "付加疑問文ですが、”right?”を使うことで肯定形、否定形を考慮せず表現することができます。" },
+      { "id": 99, "genre": "応用・まとめ", "jp": "今まで行ったことないとこに行きたいな〜。", "en": "I want to go somewhere I’ve never been before.", "point": "Want to＝wanna（カジュアルな表現ですが日常会話ではごく一般的に使われます。）" },
+      { "id": 100, "genre": "応用・まとめ", "jp": "妹さんは今まで地元から出たことあるの？", "en": "Has your younger sister ever left her hometown?", "point": "現在完了（経験）" }
+    ];
+
+    const TOTAL_QUESTIONS = QUESTIONS_DATA.length; // 100
+
+    // 登場順の全ジャンル配列
+    const GENRES_LIST = [];
+    QUESTIONS_DATA.forEach(q => {
+      if (!GENRES_LIST.includes(q.genre)) {
+        GENRES_LIST.push(q.genre);
+      }
+    });
+
+    // =========================================================================
+    // PWA アプリアイコン(Canvas PNG) & インライン manifest.json & Service Worker
+    // =========================================================================
+    (function setupPWAAssets() {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 512;
+        canvas.height = 512;
+        const ctx = canvas.getContext('2d');
+
+        // 背景グラデーション
+        const grad = ctx.createLinearGradient(0, 0, 512, 512);
+        grad.addColorStop(0, '#2563EB');
+        grad.addColorStop(1, '#4F46E5');
+        ctx.fillStyle = grad;
+
+        // 角丸背景
+        const r = 112;
+        ctx.beginPath();
+        ctx.moveTo(r, 0);
+        ctx.lineTo(512 - r, 0);
+        ctx.quadraticCurveTo(512, 0, 512, r);
+        ctx.lineTo(512, 512 - r);
+        ctx.quadraticCurveTo(512, 512, 512 - r, 512);
+        ctx.lineTo(r, 512);
+        ctx.quadraticCurveTo(0, 512, 0, 512 - r);
+        ctx.lineTo(0, r);
+        ctx.quadraticCurveTo(0, 0, r, 0);
+        ctx.closePath();
+        ctx.fill();
+
+        // 稲妻シンボル（瞬間英作文）
+        ctx.fillStyle = '#FACC15';
+        ctx.beginPath();
+        ctx.moveTo(292, 74);
+        ctx.lineTo(136, 274);
+        ctx.lineTo(246, 274);
+        ctx.lineTo(220, 418);
+        ctx.lineTo(376, 218);
+        ctx.lineTo(266, 218);
+        ctx.closePath();
+        ctx.fill();
+
+        // 下部テキスト
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = '800 44px -apple-system, BlinkMacSystemFont, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('瞬間英作文', 256, 468);
+
+        const iconDataUrl = canvas.toDataURL('image/png');
+        const appleIconLink = document.getElementById('apple-touch-icon-link');
+        if (appleIconLink) appleIconLink.href = iconDataUrl;
+
+        const manifestObj = {
+          name: '瞬間英作文 フラッシュカード 100選',
+          short_name: '瞬間英作文',
+          description: '全100問収録の瞬間英作文フラッシュカードWebアプリ',
+          start_url: '.',
+          display: 'standalone',
+          orientation: 'portrait',
+          background_color: '#F1F5F9',
+          theme_color: '#F8FAFC',
+          icons: [
+            { src: iconDataUrl, sizes: '512x512', type: 'image/png', purpose: 'any maskable' }
+          ]
+        };
+        const manifestJson = JSON.stringify(manifestObj);
+        const manifestDataUri = 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(manifestJson);
+        const manifestLink = document.getElementById('manifest-link');
+        if (manifestLink) manifestLink.href = manifestDataUri;
+      } catch (e) {}
+
+      // オフラインキャッシュ用 Service Worker 登録 (http/https 配信時)
+      if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.protocol === 'http:')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        });
+      }
+    })();
+
+    // =========================================================================
+    // 状態管理 & localStorage 永続化
+    // =========================================================================
+    const STORAGE_KEY_MARKS = 'shunkan_en_marks_v1';
+    const STORAGE_KEY_SETTINGS = 'shunkan_en_settings_v1';
+
+    let marks = {}; // { [id]: 'easy' | 'normal' | 'hard' }
+    let settings = {
+      timerEnabled: false,
+      autoSpeak: false,
+      autoNextOnRate: false,
+      speechRate: 1.0
+    };
+
+    function loadStorage() {
+      try {
+        const savedMarks = localStorage.getItem(STORAGE_KEY_MARKS);
+        if (savedMarks) marks = JSON.parse(savedMarks) || {};
+      } catch (e) { marks = {}; }
+
+      try {
+        const savedSettings = localStorage.getItem(STORAGE_KEY_SETTINGS);
+        if (savedSettings) {
+          settings = Object.assign(settings, JSON.parse(savedSettings));
+        }
+      } catch (e) {}
+    }
+
+    function saveMarks() {
+      try {
+        localStorage.setItem(STORAGE_KEY_MARKS, JSON.stringify(marks));
+      } catch (e) {}
+    }
+
+    function saveSettings() {
+      try {
+        localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(settings));
+      } catch (e) {}
+    }
+
+    loadStorage();
+
+    // 演習ステート
+    let currentView = 'flashcard'; // 'flashcard' | 'list'
+    let filterGenre = 'ALL';       // 'ALL' または ジャンル名
+    let filterDiff = 'all';        // 'all' | 'easy' | 'normal' | 'hard' | 'unlearned'
+    let sortMode = 'id';           // 'id' | 'hard' | 'easy' | 'unlearned' | 'random'
+    let randomSeedMap = {};        // ランダムソート用の固定乱数マップ
+    let activeDeck = [];           // 現在のフィルタ・ソート適用後の問題配列
+    let currentIndex = 0;          // activeDeck内の現在位置
+    let isAnswerShown = false;     // 裏面表示状態
+    let searchQuery = '';          // 一覧画面の検索クエリ
+    let maskEnglishInList = false; // 一覧画面で英語を隠すか
+
+    // 5秒カウントダウンタイマー管理
+    let timerInterval = null;
+    let timerRemainingMs = 5000;
+    const TIMER_DURATION_MS = 5000;
+
+    function generateRandomSeeds() {
+      QUESTIONS_DATA.forEach(q => {
+        randomSeedMap[q.id] = Math.random();
+      });
+    }
+    generateRandomSeeds();
+
+    function getMark(id) {
+      return marks[id] || 'unlearned';
+    }
+
+    // ソート優先度スコア
+    function getSortRank(mark, mode) {
+      if (mode === 'hard') {
+        // 難しい → 普通 → 簡単 → 未学習
+        return { hard: 1, normal: 2, easy: 3, unlearned: 4 }[mark] || 4;
+      }
+      if (mode === 'easy') {
+        // 簡単 → 普通 → 難しい → 未学習
+        return { easy: 1, normal: 2, hard: 3, unlearned: 4 }[mark] || 4;
+      }
+      if (mode === 'unlearned') {
+        // 未学習 → 難しい → 普通 → 簡単
+        return { unlearned: 1, hard: 2, normal: 3, easy: 4 }[mark] || 1;
+      }
+      return 0;
+    }
+
+    // フィルタ＆ソートを再計算してデッキを更新
+    function rebuildDeck(preserveQuestionId = null) {
+      const prevQuestionId = preserveQuestionId !== null
+        ? preserveQuestionId
+        : (activeDeck[currentIndex] ? activeDeck[currentIndex].id : null);
+
+      let list = QUESTIONS_DATA.filter(q => {
+        if (filterGenre !== 'ALL' && q.genre !== filterGenre) return false;
+        const m = getMark(q.id);
+        if (filterDiff !== 'all' && m !== filterDiff) return false;
+        return true;
+      });
+
+      list.sort((a, b) => {
+        if (sortMode === 'id') {
+          return a.id - b.id;
+        }
+        if (sortMode === 'random') {
+          return (randomSeedMap[a.id] || 0) - (randomSeedMap[b.id] || 0);
+        }
+        const rankA = getSortRank(getMark(a.id), sortMode);
+        const rankB = getSortRank(getMark(b.id), sortMode);
+        if (rankA !== rankB) return rankA - rankB;
+        return a.id - b.id;
+      });
+
+      activeDeck = list;
+
+      if (prevQuestionId !== null) {
+        const foundIdx = activeDeck.findIndex(q => q.id === prevQuestionId);
+        if (foundIdx !== -1) {
+          currentIndex = foundIdx;
+        } else if (currentIndex >= activeDeck.length) {
+          currentIndex = Math.max(0, activeDeck.length - 1);
+        }
+      } else {
+        currentIndex = 0;
+      }
+    }
+
+    // =========================================================================
+    // Web Speech API 英語音声読み上げ（iOS Safari対応）
+    // =========================================================================
+    let cachedEnglishVoice = null;
+
+    function pickBestEnglishVoice() {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      if (!voices || voices.length === 0) return null;
+
+      // iOS高品質英語音声（Samantha, Alex, Daniel, Karen, Ava等）を優先
+      const preferredNames = ['Samantha', 'Alex', 'Daniel', 'Karen', 'ava', 'siri'];
+      const enVoices = voices.filter(v => /^en(-|_)/i.test(v.lang));
+      if (enVoices.length === 0) return null;
+
+      for (const name of preferredNames) {
+        const match = enVoices.find(v => v.name.toLowerCase().includes(name.toLowerCase()));
+        if (match) return match;
+      }
+      const usVoice = enVoices.find(v => /en[-_]US/i.test(v.lang));
+      return usVoice || enVoices[0];
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        cachedEnglishVoice = pickBestEnglishVoice();
+      };
+    }
+
+    function speakEnglish(text, btnEl = null) {
+      if (!('speechSynthesis' in window)) {
+        showToast('お使いのブラウザは音声読み上げに非対応です');
+        return;
+      }
+      try {
+        window.speechSynthesis.cancel();
+        // 括弧内の別表現（例: "who (whom)", "call (text)", "isn’t it? (right?)"）を自然な読み上げ用に整形
+        const cleanSpeechText = String(text).replace(/\s*\([^)]*\)/g, '').trim();
+        const utter = new SpeechSynthesisUtterance(cleanSpeechText);
+        if (!cachedEnglishVoice) cachedEnglishVoice = pickBestEnglishVoice();
+        if (cachedEnglishVoice) utter.voice = cachedEnglishVoice;
+        utter.lang = (cachedEnglishVoice && cachedEnglishVoice.lang) ? cachedEnglishVoice.lang : 'en-US';
+        utter.rate = Number(settings.speechRate) || 1.0;
+
+        const mainSpeakBtn = document.getElementById('card-speak-btn');
+        const targetBtn = btnEl || mainSpeakBtn;
+
+        utter.onstart = () => {
+          if (targetBtn) targetBtn.classList.add('speaking');
+        };
+        utter.onend = () => {
+          if (targetBtn) targetBtn.classList.remove('speaking');
+        };
+        utter.onerror = () => {
+          if (targetBtn) targetBtn.classList.remove('speaking');
+        };
+
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
+    // =========================================================================
+    // 5秒カウントダウンタイマー制御
+    // =========================================================================
+    function stopCountdownTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      const barFill = document.getElementById('timer-bar-fill');
+      const widget = document.getElementById('card-timer-widget');
+      if (barFill) {
+        barFill.style.width = '0%';
+        barFill.classList.remove('urgent');
+      }
+      if (widget) {
+        widget.classList.remove('running', 'urgent');
+        widget.style.display = settings.timerEnabled ? 'inline-flex' : 'none';
+      }
+    }
+
+    function startCountdownTimer() {
+      stopCountdownTimer();
+      const widget = document.getElementById('card-timer-widget');
+      const secText = document.getElementById('card-timer-sec');
+      const barFill = document.getElementById('timer-bar-fill');
+
+      if (!settings.timerEnabled || activeDeck.length === 0 || isAnswerShown || currentView !== 'flashcard') {
+        if (widget) widget.style.display = settings.timerEnabled ? 'inline-flex' : 'none';
+        if (secText && settings.timerEnabled) secText.textContent = isAnswerShown ? '完了' : '5.0s';
+        return;
+      }
+
+      widget.style.display = 'inline-flex';
+      widget.classList.add('running');
+      timerRemainingMs = TIMER_DURATION_MS;
+      const startTime = performance.now();
+
+      timerInterval = setInterval(() => {
+        const elapsed = performance.now() - startTime;
+        timerRemainingMs = Math.max(0, TIMER_DURATION_MS - elapsed);
+        const sec = (timerRemainingMs / 1000).toFixed(1);
+        const pct = Math.min(100, (elapsed / TIMER_DURATION_MS) * 100);
+
+        if (secText) secText.textContent = `${sec}s`;
+        if (barFill) barFill.style.width = `${pct}%`;
+
+        if (timerRemainingMs <= 1800) {
+          widget.classList.add('urgent');
+          if (barFill) barFill.classList.add('urgent');
+        }
+
+        if (timerRemainingMs <= 0) {
+          stopCountdownTimer();
+          if (secText) secText.textContent = '0.0s';
+          revealAnswer(true);
+        }
+      }, 50);
+    }
+
+    // =========================================================================
+    // UI レンダリング
+    // =========================================================================
+    const MARK_LABELS = {
+      easy: '✨ 簡単',
+      normal: '👌 普通',
+      hard: '🔥 難しい',
+      unlearned: '未学習'
+    };
+
+    const DIFF_LABELS = {
+      all: 'すべて',
+      easy: '簡単のみ',
+      normal: '普通のみ',
+      hard: '難しいのみ',
+      unlearned: '未学習のみ'
+    };
+
+    const SORT_LABELS = {
+      id: '番号順',
+      hard: '難しい順',
+      easy: '簡単順',
+      unlearned: '未学習優先',
+      random: 'ランダム'
+    };
+
+    function updateHeaderAndProgress() {
+      const q = activeDeck[currentIndex];
+      const genreLabelEl = document.getElementById('header-genre-label');
+      const counterEl = document.getElementById('header-counter-text');
+      const chipFilter = document.getElementById('chip-filter-status');
+      const chipSort = document.getElementById('chip-sort-status');
+      const timerBtn = document.getElementById('toggle-timer-btn');
+      const timerBtnText = document.getElementById('timer-btn-text');
+
+      if (filterGenre === 'ALL') {
+        genreLabelEl.textContent = q ? `全ジャンル (${q.genre})` : `全${GENRES_LIST.length}ジャンル`;
+      } else {
+        genreLabelEl.textContent = `絞込: ${filterGenre}`;
+      }
+
+      if (q) {
+        counterEl.textContent = `No.${q.id} / ${TOTAL_QUESTIONS} （${currentIndex + 1}/${activeDeck.length}）`;
+      } else {
+        counterEl.textContent = `0 / ${TOTAL_QUESTIONS}`;
+      }
+
+      // フィルター・ソート状態チップ
+      const filterParts = [];
+      if (filterGenre !== 'ALL') filterParts.push(filterGenre);
+      if (filterDiff !== 'all') filterParts.push(DIFF_LABELS[filterDiff]);
+      chipFilter.textContent = filterParts.length > 0 ? filterParts.join('・') : `すべて (${TOTAL_QUESTIONS}問)`;
+      chipFilter.classList.toggle('filtered', filterParts.length > 0);
+
+      chipSort.textContent = SORT_LABELS[sortMode] || '番号順';
+      chipSort.classList.toggle('filtered', sortMode !== 'id');
+
+      // タイマーボタン表示
+      timerBtn.classList.toggle('active', settings.timerEnabled);
+      timerBtnText.textContent = settings.timerEnabled ? '5秒:ON' : '5秒:OFF';
+
+      // 進捗バー（全100問または現在のジャンル内）
+      const targetPool = filterGenre === 'ALL'
+        ? QUESTIONS_DATA
+        : QUESTIONS_DATA.filter(item => item.genre === filterGenre);
+      const total = targetPool.length || 1;
+      let cEasy = 0, cNormal = 0, cHard = 0;
+      targetPool.forEach(item => {
+        const m = getMark(item.id);
+        if (m === 'easy') cEasy++;
+        else if (m === 'normal') cNormal++;
+        else if (m === 'hard') cHard++;
+      });
+
+      document.getElementById('prog-easy').style.width = `${(cEasy / total) * 100}%`;
+      document.getElementById('prog-normal').style.width = `${(cNormal / total) * 100}%`;
+      document.getElementById('prog-hard').style.width = `${(cHard / total) * 100}%`;
+    }
+
+    function renderFlashcard() {
+      updateHeaderAndProgress();
+
+      const cardEl = document.getElementById('flashcard');
+      const emptyEl = document.getElementById('empty-card-state');
+      const controlsDock = document.getElementById('controls-dock');
+
+      if (activeDeck.length === 0) {
+        cardEl.style.display = 'none';
+        emptyEl.style.display = 'flex';
+        controlsDock.style.opacity = '0.4';
+        controlsDock.style.pointerEvents = 'none';
+        stopCountdownTimer();
+        return;
+      }
+
+      cardEl.style.display = 'flex';
+      emptyEl.style.display = 'none';
+      controlsDock.style.opacity = '1';
+      controlsDock.style.pointerEvents = 'auto';
+
+      const q = activeDeck[currentIndex];
+      const mark = getMark(q.id);
+
+      document.getElementById('card-no-badge').textContent = `No.${q.id} / ${TOTAL_QUESTIONS}`;
+      document.getElementById('card-genre-badge').textContent = q.genre;
+
+      const markPill = document.getElementById('card-mark-pill');
+      markPill.className = `card-mark-pill ${mark}`;
+      markPill.textContent = MARK_LABELS[mark];
+
+      document.getElementById('card-jp-text').textContent = q.jp;
+      document.getElementById('card-en-text').textContent = q.en;
+      document.getElementById('card-point-text').textContent = q.point;
+      document.getElementById('card-Pos-indicator').textContent = `${currentIndex + 1} / ${activeDeck.length} 問目`;
+
+      // 裏面表示/非表示の切り替え
+      const promptEl = document.getElementById('tap-reveal-prompt');
+      const answerEl = document.getElementById('answer-section');
+      const flipBtn = document.getElementById('flip-card-btn');
+
+      if (isAnswerShown) {
+        promptEl.classList.add('hidden');
+        answerEl.classList.remove('hidden');
+        flipBtn.innerHTML = '<span>問題を隠す</span>';
+      } else {
+        promptEl.classList.remove('hidden');
+        answerEl.classList.add('hidden');
+        flipBtn.innerHTML = '<span>解答を見る</span>';
+      }
+
+      // 下部3つの評価ボタンの選択状態
+      ['easy', 'normal', 'hard'].forEach(r => {
+        const btn = document.getElementById(`rate-btn-${r}`);
+        if (btn) btn.classList.toggle('selected', mark === r);
+      });
+    }
+
+    function revealAnswer(fromTimer = false) {
+      if (activeDeck.length === 0) return;
+      isAnswerShown = true;
+      stopCountdownTimer();
+      renderFlashcard();
+
+      if (settings.autoSpeak || fromTimer) {
+        const q = activeDeck[currentIndex];
+        if (q && settings.autoSpeak) {
+          speakEnglish(q.en);
+        }
+      }
+    }
+
+    function toggleCardFlip() {
+      if (activeDeck.length === 0) return;
+      if (isAnswerShown) {
+        isAnswerShown = false;
+        renderFlashcard();
+        startCountdownTimer();
+      } else {
+        revealAnswer(false);
+      }
+    }
+
+    function goNextCard() {
+      if (activeDeck.length === 0) return;
+      const cardEl = document.getElementById('flashcard');
+      cardEl.classList.add('swipe-left');
+      setTimeout(() => {
+        cardEl.classList.remove('swipe-left');
+        currentIndex = (currentIndex + 1) % activeDeck.length;
+        isAnswerShown = false;
+        renderFlashcard();
+        startCountdownTimer();
+      }, 110);
+    }
+
+    function goPrevCard() {
+      if (activeDeck.length === 0) return;
+      const cardEl = document.getElementById('flashcard');
+      cardEl.classList.add('swipe-right');
+      setTimeout(() => {
+        cardEl.classList.remove('swipe-right');
+        currentIndex = (currentIndex - 1 + activeDeck.length) % activeDeck.length;
+        isAnswerShown = false;
+        renderFlashcard();
+        startCountdownTimer();
+      }, 110);
+    }
+
+    // 学習記録（簡単・普通・難しい）の登録・解除
+    function toggleMarkForCurrentCard(rateValue) {
+      if (activeDeck.length === 0) return;
+      const q = activeDeck[currentIndex];
+      const currentMark = getMark(q.id);
+
+      if (currentMark === rateValue) {
+        // もう一度タップで「未学習」に解除
+        delete marks[q.id];
+        saveMarks();
+        renderFlashcard();
+        showToast(`No.${q.id} を「未学習」に戻しました`);
+      } else {
+        marks[q.id] = rateValue;
+        saveMarks();
+        renderFlashcard();
+        if (settings.autoNextOnRate && activeDeck.length > 1) {
+          setTimeout(() => {
+            goNextCard();
+          }, 240);
+        }
+      }
+    }
+
+    // =========================================================================
+    // 全問一覧リスト画面のレンダリング
+    // =========================================================================
+    function renderListView() {
+      updateHeaderAndProgress();
+      const container = document.getElementById('list-scroll-container');
+      const query = searchQuery.trim().toLowerCase();
+
+      const filtered = activeDeck.filter(q => {
+        if (!query) return true;
+        return (
+          q.jp.toLowerCase().includes(query) ||
+          q.en.toLowerCase().includes(query) ||
+          q.genre.toLowerCase().includes(query) ||
+          q.point.toLowerCase().includes(query) ||
+          String(q.id) === query
+        );
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state" style="margin-top:12px;">
+            <div style="font-size:28px;">🔍</div>
+            <div style="font-size:15px; font-weight:800;">該当するフレーズが見つかりません</div>
+            <div style="font-size:12.5px; color:var(--text-sub);">検索キーワードや絞り込み条件を変更してみてください。</div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(q => {
+        const m = getMark(q.id);
+        return `
+          <div class="list-card-item" data-qid="${q.id}">
+            <div class="list-item-top">
+              <div class="list-item-badges">
+                <span class="card-no-badge">No.${q.id}</span>
+                <span class="card-genre-badge">${escapeHtml(q.genre)}</span>
+                <span class="card-mark-pill ${m}">${MARK_LABELS[m]}</span>
+              </div>
+              <div class="list-item-actions">
+                <button type="button" class="mini-speak-btn" data-speak-id="${q.id}" title="音声再生">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="list-jp">${escapeHtml(q.jp)}</div>
+            <div class="list-en ${maskEnglishInList ? 'masked' : ''}">${escapeHtml(q.en)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // =========================================================================
+    // ジャンル一覧ボトムシートのレンダリング＆操作
+    // =========================================================================
+    function renderGenreSheet() {
+      const listEl = document.getElementById('genre-sheet-list');
+      const totalLearned = QUESTIONS_DATA.filter(q => getMark(q.id) !== 'unlearned').length;
+      document.getElementById('all-genres-total-stat').textContent = `学習済 ${totalLearned} / ${TOTAL_QUESTIONS}問`;
+
+      listEl.innerHTML = GENRES_LIST.map((genreName, idx) => {
+        const qs = QUESTIONS_DATA.filter(q => q.genre === genreName);
+        const firstId = qs[0].id;
+        const lastId = qs[qs.length - 1].id;
+        let cEasy = 0, cNormal = 0, cHard = 0;
+        qs.forEach(q => {
+          const m = getMark(q.id);
+          if (m === 'easy') cEasy++;
+          else if (m === 'normal') cNormal++;
+          else if (m === 'hard') cHard++;
+        });
+        const learnedCount = cEasy + cNormal + cHard;
+        const isCurrentFilter = (filterGenre === genreName);
+
+        return `
+          <div class="genre-row-card ${isCurrentFilter ? 'current-filter' : ''}">
+            <div class="genre-row-top">
+              <div class="genre-name-wrap">
+                <span class="genre-index-num">${idx + 1}</span>
+                <div>
+                  <div class="genre-title-text">${escapeHtml(genreName)}</div>
+                  <div style="font-size:11px; color:var(--text-muted);">No.${firstId}〜No.${lastId}（全${qs.length}問）</div>
+                </div>
+              </div>
+              <div class="genre-stats-text">
+                達成 ${learnedCount}/${qs.length}
+              </div>
+            </div>
+            <div class="progress-bar-wrap" style="height:5px;">
+              <div class="progress-seg easy" style="width:${(cEasy / qs.length) * 100}%"></div>
+              <div class="progress-seg normal" style="width:${(cNormal / qs.length) * 100}%"></div>
+              <div class="progress-seg hard" style="width:${(cHard / qs.length) * 100}%"></div>
+            </div>
+            <div class="genre-action-btns">
+              <button type="button" class="genre-act-btn" data-genre-jump="${escapeHtml(genreName)}">
+                <span>🎯 先頭へジャンプ</span>
+              </button>
+              <button type="button" class="genre-act-btn filter-btn" data-genre-filter="${escapeHtml(genreName)}">
+                <span>🔍 このジャンルに絞込</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 1.「全体モードのまま、そのジャンルの最初の問題へジャンプする」
+    function jumpToGenreFirstQuestion(genreName) {
+      filterGenre = 'ALL';
+      filterDiff = 'all';
+      const firstQ = QUESTIONS_DATA.find(q => q.genre === genreName);
+      rebuildDeck(firstQ ? firstQ.id : 1);
+      if (firstQ) {
+        const idx = activeDeck.findIndex(q => q.id === firstQ.id);
+        if (idx !== -1) currentIndex = idx;
+      }
+      isAnswerShown = false;
+      closeAllModals();
+      switchMainView('flashcard');
+      renderFlashcard();
+      startCountdownTimer();
+      showToast(`「${genreName}」の先頭 (No.${firstQ ? firstQ.id : 1}) へジャンプしました`);
+    }
+
+    // 2.「そのジャンルの問題だけに絞り込んで演習する」
+    function filterBySpecificGenre(genreName) {
+      filterGenre = genreName;
+      rebuildDeck(null);
+      currentIndex = 0;
+      isAnswerShown = false;
+      closeAllModals();
+      if (currentView === 'list') {
+        renderListView();
+      } else {
+        renderFlashcard();
+        startCountdownTimer();
+      }
+      showToast(`「${genreName}」(${activeDeck.length}問) に絞り込みました`);
+    }
+
+    // =========================================================================
+    // ソート＆フィルター モーダルの更新
+    // =========================================================================
+    function renderFilterSortSheet() {
+      // ジャンルセレクト初期化
+      const selectEl = document.getElementById('genre-filter-select');
+      selectEl.innerHTML = `<option value="ALL">全ジャンル（全${TOTAL_QUESTIONS}問）</option>` +
+        GENRES_LIST.map((g, i) => {
+          const cnt = QUESTIONS_DATA.filter(q => q.genre === g).length;
+          return `<option value="${escapeHtml(g)}">${i + 1}. ${escapeHtml(g)} (${cnt}問)</option>`;
+        }).join('');
+      selectEl.value = filterGenre;
+
+      // 難易度カウント更新（選択中ジャンル内で集計）
+      const pool = filterGenre === 'ALL'
+        ? QUESTIONS_DATA
+        : QUESTIONS_DATA.filter(q => q.genre === filterGenre);
+
+      const counts = { all: pool.length, unlearned: 0, hard: 0, normal: 0, easy: 0 };
+      pool.forEach(q => {
+        const m = getMark(q.id);
+        counts[m] = (counts[m] || 0) + 1;
+      });
+
+      ['all', 'unlearned', 'hard', 'normal', 'easy'].forEach(k => {
+        const el = document.getElementById(`count-diff-${k}`);
+        if (el) el.textContent = `${counts[k]}問`;
+      });
+
+      document.querySelectorAll('#diff-filter-options .option-radio-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.diff === filterDiff);
+      });
+
+      document.querySelectorAll('#sort-options .option-radio-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.sort === sortMode);
+      });
+    }
+
+    // =========================================================================
+    // 設定モーダルの更新
+    // =========================================================================
+    function renderSettingsSheet() {
+      document.getElementById('setting-timer-toggle').classList.toggle('on', !!settings.timerEnabled);
+      document.getElementById('setting-autospeak-toggle').classList.toggle('on', !!settings.autoSpeak);
+      document.getElementById('setting-autonext-toggle').classList.toggle('on', !!settings.autoNextOnRate);
+      document.getElementById('setting-speech-rate').value = String(settings.speechRate || 1.0);
+
+      let cEasy = 0, cNormal = 0, cHard = 0, cUnlearned = 0;
+      QUESTIONS_DATA.forEach(q => {
+        const m = getMark(q.id);
+        if (m === 'easy') cEasy++;
+        else if (m === 'normal') cNormal++;
+        else if (m === 'hard') cHard++;
+        else cUnlearned++;
+      });
+
+      document.getElementById('settings-stats-summary').innerHTML =
+        `全${TOTAL_QUESTIONS}問中：<strong>✨簡単 ${cEasy}問</strong> / <strong>👌普通 ${cNormal}問</strong> / <strong>🔥難しい ${cHard}問</strong> / 未学習 ${cUnlearned}問`;
+    }
+
+    // =========================================================================
+    // ビュー・モーダル・トースト切り替えユーティリティ
+    // =========================================================================
+    function switchMainView(viewName) {
+      currentView = viewName;
+      document.getElementById('view-flashcard').classList.toggle('active', viewName === 'flashcard');
+      document.getElementById('view-list').classList.toggle('active', viewName === 'list');
+      document.getElementById('tab-flashcard').classList.toggle('active', viewName === 'flashcard');
+      document.getElementById('tab-list').classList.toggle('active', viewName === 'list');
+
+      if (viewName === 'flashcard') {
+        renderFlashcard();
+        startCountdownTimer();
+      } else {
+        stopCountdownTimer();
+        renderListView();
+      }
+    }
+
+    function openModal(modalId) {
+      stopCountdownTimer();
+      if (modalId === 'modal-genres') renderGenreSheet();
+      if (modalId === 'modal-filter-sort') renderFilterSortSheet();
+      if (modalId === 'modal-settings') renderSettingsSheet();
+
+      const el = document.getElementById(modalId);
+      if (el) {
+        el.classList.add('open');
+        el.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll('.modal-backdrop.open').forEach(el => {
+        el.classList.remove('open');
+        el.setAttribute('aria-hidden', 'true');
+      });
+      if (currentView === 'flashcard' && !isAnswerShown) {
+        startCountdownTimer();
+      }
+    }
+
+    let toastTimeout = null;
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        t.classList.remove('show');
+      }, 2100);
+    }
+
+    // =========================================================================
+    // イベントリスナー登録
+    // =========================================================================
+    function initEvents() {
+      // カード本体タップで裏返し（音声ボタンタップ時は除外）
+      const cardEl = document.getElementById('flashcard');
+      cardEl.addEventListener('click', (e) => {
+        if (e.target.closest('#card-speak-btn')) return;
+        toggleCardFlip();
+      });
+
+      // カード上の英語音声読み上げボタン
+      document.getElementById('card-speak-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const q = activeDeck[currentIndex];
+        if (q) speakEnglish(q.en, e.currentTarget);
+      });
+
+      // 左右スワイプ操作でカードめくり
+      let touchStartX = 0;
+      let touchStartY = 0;
+      cardEl.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      cardEl.addEventListener('touchend', (e) => {
+        if (e.changedTouches.length === 1) {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          const dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+            if (dx < 0) goNextCard();
+            else goPrevCard();
+          }
+        }
+      }, { passive: true });
+
+      // ナビゲーションボタン
+      document.getElementById('prev-card-btn').addEventListener('click', goPrevCard);
+      document.getElementById('next-card-btn').addEventListener('click', goNextCard);
+      document.getElementById('flip-card-btn').addEventListener('click', toggleCardFlip);
+
+      // 評価ボタン（簡単・普通・難しい）
+      document.querySelectorAll('.rate-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggleMarkForCurrentCard(btn.dataset.rate);
+        });
+      });
+
+      // 空状態でのフィルターリセットボタン
+      document.getElementById('reset-filter-empty-btn').addEventListener('click', () => {
+        filterGenre = 'ALL';
+        filterDiff = 'all';
+        rebuildDeck(1);
+        isAnswerShown = false;
+        renderFlashcard();
+        startCountdownTimer();
+        showToast('フィルターをすべて解除しました');
+      });
+
+      // ヘッダーボタン群
+      document.getElementById('open-genre-btn').addEventListener('click', () => openModal('modal-genres'));
+      document.getElementById('open-settings-btn').addEventListener('click', () => openModal('modal-settings'));
+      document.getElementById('open-guide-btn').addEventListener('click', () => openModal('modal-guide'));
+      document.getElementById('chip-filter-status').addEventListener('click', () => openModal('modal-filter-sort'));
+      document.getElementById('chip-sort-status').addEventListener('click', () => openModal('modal-filter-sort'));
+
+      // 5秒タイマートグルボタン（ヘッダー）
+      document.getElementById('toggle-timer-btn').addEventListener('click', () => {
+        settings.timerEnabled = !settings.timerEnabled;
+        saveSettings();
+        updateHeaderAndProgress();
+        if (settings.timerEnabled) {
+          showToast('⏱️ 5秒カウントダウンタイマー：ON');
+          startCountdownTimer();
+        } else {
+          showToast('⏱️ 5秒カウントダウンタイマー：OFF');
+          stopCountdownTimer();
+        }
+      });
+
+      // 下部タブバー
+      document.getElementById('tab-flashcard').addEventListener('click', () => switchMainView('flashcard'));
+      document.getElementById('tab-genres').addEventListener('click', () => openModal('modal-genres'));
+      document.getElementById('tab-filter-sort').addEventListener('click', () => openModal('modal-filter-sort'));
+      document.getElementById('tab-list').addEventListener('click', () => switchMainView('list'));
+
+      // モーダル閉じる処理
+      document.querySelectorAll('[data-close]').forEach(btn => {
+        btn.addEventListener('click', closeAllModals);
+      });
+      document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+        backdrop.addEventListener('click', (e) => {
+          if (e.target === backdrop) closeAllModals();
+        });
+      });
+
+      // ジャンル一覧シート内の操作（先頭へジャンプ / ジャンル絞り込み）
+      document.getElementById('all-genres-reset-btn').addEventListener('click', () => {
+        filterGenre = 'ALL';
+        rebuildDeck();
+        isAnswerShown = false;
+        closeAllModals();
+        if (currentView === 'list') renderListView();
+        else {
+          renderFlashcard();
+          startCountdownTimer();
+        }
+        showToast(`全ジャンル（全${TOTAL_QUESTIONS}問モード）に切り替えました`);
+      });
+
+      document.getElementById('genre-sheet-list').addEventListener('click', (e) => {
+        const jumpBtn = e.target.closest('[data-genre-jump]');
+        if (jumpBtn) {
+          jumpToGenreFirstQuestion(jumpBtn.dataset.genreJump);
+          return;
+        }
+        const filterBtn = e.target.closest('[data-genre-filter]');
+        if (filterBtn) {
+          filterBySpecificGenre(filterBtn.dataset.genreFilter);
+        }
+      });
+
+      // ソート＆フィルターシート内の操作
+      document.getElementById('diff-filter-options').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-diff]');
+        if (!btn) return;
+        filterDiff = btn.dataset.diff;
+        rebuildDeck();
+        isAnswerShown = false;
+        renderFilterSortSheet();
+        if (currentView === 'list') renderListView();
+        else renderFlashcard();
+      });
+
+      document.getElementById('genre-filter-select').addEventListener('change', (e) => {
+        filterGenre = e.target.value;
+        rebuildDeck();
+        isAnswerShown = false;
+        renderFilterSortSheet();
+        if (currentView === 'list') renderListView();
+        else renderFlashcard();
+      });
+
+      document.getElementById('sort-options').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-sort]');
+        if (!btn) return;
+        const chosenSort = btn.dataset.sort;
+        if (chosenSort === 'random') {
+          generateRandomSeeds();
+        }
+        sortMode = chosenSort;
+        rebuildDeck();
+        currentIndex = 0;
+        isAnswerShown = false;
+        renderFilterSortSheet();
+        if (currentView === 'list') renderListView();
+        else renderFlashcard();
+        showToast(`並び替え：${SORT_LABELS[sortMode]}`);
+      });
+
+      // 設定シート内の操作
+      document.getElementById('setting-timer-toggle').addEventListener('click', () => {
+        settings.timerEnabled = !settings.timerEnabled;
+        saveSettings();
+        renderSettingsSheet();
+        updateHeaderAndProgress();
+      });
+
+      document.getElementById('setting-autospeak-toggle').addEventListener('click', () => {
+        settings.autoSpeak = !settings.autoSpeak;
+        saveSettings();
+        renderSettingsSheet();
+      });
+
+      document.getElementById('setting-autonext-toggle').addEventListener('click', () => {
+        settings.autoNextOnRate = !settings.autoNextOnRate;
+        saveSettings();
+        renderSettingsSheet();
+      });
+
+      document.getElementById('setting-speech-rate').addEventListener('change', (e) => {
+        settings.speechRate = parseFloat(e.target.value) || 1.0;
+        saveSettings();
+      });
+
+      document.getElementById('reload-app-btn').addEventListener('click', async () => {
+        showToast('🔄 最新データを読み込んでいます...');
+        try {
+          if ('serviceWorker' in navigator) {
+            const regs = await navigator.serviceWorker.getRegistrations();
+            for (const reg of regs) await reg.update();
+          }
+          if ('caches' in window) {
+            const keys = await caches.keys();
+            await Promise.all(keys.map(k => caches.delete(k)));
+          }
+        } catch (e) {}
+        const url = new URL(window.location.href);
+        url.searchParams.set('_t', Date.now());
+        window.location.replace(url.toString());
+      });
+
+      document.getElementById('reset-records-btn').addEventListener('click', () => {
+        if (window.confirm(`全${TOTAL_QUESTIONS}問の学習記録（簡単・普通・難しい）をすべて未学習にリセットしますか？`)) {
+          marks = {};
+          saveMarks();
+          rebuildDeck();
+          renderSettingsSheet();
+          if (currentView === 'list') renderListView();
+          else renderFlashcard();
+          showToast('学習記録をすべてリセットしました');
+        }
+      });
+
+      // 全問一覧リスト画面の操作
+      const searchInput = document.getElementById('list-search-input');
+      const searchClear = document.getElementById('list-search-clear');
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value;
+        searchClear.style.display = searchQuery ? 'flex' : 'none';
+        renderListView();
+      });
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.style.display = 'none';
+        renderListView();
+      });
+
+      document.getElementById('toggle-mask-en-btn').addEventListener('click', (e) => {
+        maskEnglishInList = !maskEnglishInList;
+        e.currentTarget.classList.toggle('active', maskEnglishInList);
+        e.currentTarget.textContent = maskEnglishInList ? '英語を表示' : '英語を隠す';
+        renderListView();
+      });
+
+      document.getElementById('list-scroll-container').addEventListener('click', (e) => {
+        const speakBtn = e.target.closest('[data-speak-id]');
+        if (speakBtn) {
+          e.stopPropagation();
+          const qid = Number(speakBtn.dataset.speakId);
+          const q = QUESTIONS_DATA.find(item => item.id === qid);
+          if (q) speakEnglish(q.en, speakBtn);
+          return;
+        }
+        const cardItem = e.target.closest('[data-qid]');
+        if (cardItem) {
+          const qid = Number(cardItem.dataset.qid);
+          const idx = activeDeck.findIndex(item => item.id === qid);
+          if (idx !== -1) {
+            currentIndex = idx;
+            isAnswerShown = false;
+            switchMainView('flashcard');
+          }
+        }
+      });
+    }
+
+    // 初期化実行
+    rebuildDeck(1);
+    initEvents();
+    renderFlashcard();
+  </script>
+</body>
+</html>
